@@ -8,23 +8,37 @@
         <converters:UrlToImageSourceConverter x:Key="ImageSrcConverter" />
     </ContentPage.Resources>
 
-    <StackLayout Padding="20,10,20,0">
-        
-        <Picker x:Name="pickerRegion"
+    <StackLayout Padding="10,10,10,0">
+
+        <Grid Margin="5,0" Padding="0,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="35"/>
+            </Grid.ColumnDefinitions>
+            
+            <Picker x:Name="pickerRegion"
                 Title="Seleccione una region"
                 TitleColor="Black"
                 SelectedIndexChanged="pickerRegion_SelectedIndexChanged"
+                Grid.Column="0"
+                HorizontalOptions="Fill"
                 >
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Africa</x:String>
-                    <x:String>America</x:String>
-                    <x:String>Asia</x:String>
-                    <x:String>Europe</x:String>
-                    <x:String>Oceania</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Africa</x:String>
+                        <x:String>America</x:String>
+                        <x:String>Asia</x:String>
+                        <x:String>Europe</x:String>
+                        <x:String>Oceania</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label FontSize="20" Grid.Column="1" Text="Results: "  VerticalOptions="Center" HorizontalOptions="End"/>
+            <Label FontSize="20" Grid.Column="2" Text="{Binding Count}"  VerticalOptions="Center" HorizontalOptions="Start" TextColor="red"/>
+        </Grid>
     
 
         <ListView x:Name="listCountries" 

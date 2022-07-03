@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -94,7 +95,7 @@ namespace PM2P2_T1.Services
 
                             try
                             {
-                                temp.capital = item["capital"].ToString(); //asia
+                                temp.capital = item["capital"][0].ToString(); //asia
                             }
                             catch { temp.capital = "--"; }
                             
@@ -131,12 +132,17 @@ namespace PM2P2_T1.Services
 
                             //temp.capitalInfo = new List<double>() { (double)item["capitalInfo"]["latlng"][0], (double)item["capitalInfo"]["latlng"][1] };
 
+                            
+
                             countries.Add(temp);
                         }
                     }
 
                 }
-                return countries;
+
+                
+
+                return countries.OrderBy(x => x.NameCountry.common).ToList();
             }
             catch (Exception e)
             {

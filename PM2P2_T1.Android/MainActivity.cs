@@ -17,7 +17,10 @@ namespace PM2P2_T1.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            Xamarin.FormsMaps.Init(this, savedInstanceState);
+
             Xamarin.Forms.Svg.Droid.SvgImage.Init(this);
+
 
             LoadApplication(new App());
         }

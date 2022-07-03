@@ -19,6 +19,15 @@ namespace PM2P2_T1.ViewModel
             set { countries = value; OnPropertyChanged(); }
         }
 
+        private int count;
+
+        public int Count
+        {
+            get { return count; }
+            set { count = value; OnPropertyChanged(); }
+        }
+
+
         public MainViewModel()
         {
             //GetCountries();
@@ -38,6 +47,7 @@ namespace PM2P2_T1.ViewModel
 
             Countries = list;
 
+            Count = Countries.Count;
         }
     }
 }

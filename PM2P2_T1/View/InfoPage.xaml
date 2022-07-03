@@ -1,12 +1,215 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:converters ="clr-namespace:PM2P2_T1.Converters"
              x:Class="PM2P2_T1.View.InfoPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+
+
+
+    <ContentPage.Resources>
+        <converters:UrlToImageSourceConverter x:Key="ImageSrcConverter" />
+    </ContentPage.Resources>
+
+    <StackLayout>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="500"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Frame Grid.Row="0" Padding="0,0,0,0">
+
+
+                <Grid>
+                    <Label Text="Country information" 
+                       HorizontalOptions="Center"
+                       TextColor="Black" 
+                       FontSize="30"
+                       FontAttributes="Bold"
+                       />
+
+                    <ImageButton Source="arrow.png"
+                                 HorizontalOptions="Start"
+                                 HeightRequest="25"
+                                 Margin="10,0,0,0"
+                                 BackgroundColor="Transparent"
+                                 Clicked="ImageButton_Clicked"
+                                 />
+                </Grid>
+
+
+            </Frame>
+
+            <maps:Map x:Name="map"
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      Margin="10,0,10,0"
+            />
+
+            <ScrollView Grid.Row="2" Margin="10,0,10,0">
+                <StackLayout>
+                    <Grid RowSpacing="0" ColumnSpacing="0">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+
+                        <Label Text="General Information"
+                               FontSize="25"
+                               Grid.Row="0"
+                               Grid.ColumnSpan="2"
+                               HorizontalOptions="Center"
+                               />
+
+                        <!-- ******************************************************************** -->
+                        <Label Text="Name: "
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               />
+
+                        <Label Text="{Binding Name}"
+                               FontSize="20"
+                               HorizontalOptions="Start"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               />
+
+                        <!-- ******************************************************************** -->
+                        <Label Text="Capital: "
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               />
+
+                        <Label Text="{Binding Capital}"
+                               FontSize="20"
+                               HorizontalOptions="Start"
+                               Grid.Row="2"
+                               Grid.Column="1"
+                               />
+
+                        <!-- ******************************************************************** -->
+                        <Label Text="Population: "
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               Grid.Row="3"
+                               Grid.Column="0"
+                               />
+
+                        <Label Text="{Binding Population}"
+                               FontSize="20"
+                               HorizontalOptions="Start"
+                               Grid.Row="3"
+                               Grid.Column="1"
+                               />
+
+
+                        <!-- ******************************************************************** -->
+                        <Label Text="Flag: "
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               Grid.Row="4"
+                               Grid.Column="0"
+                               />
+
+                        <Image Grid.Row="4"
+                               Grid.Column="1"
+                               Source="{Binding Flag, Converter={StaticResource ImageSrcConverter}}" 
+                               HeightRequest="30"
+                               HorizontalOptions="Start"
+                               Aspect="AspectFit" />
+
+                        <!-- ******************************************************************** -->
+                        <Label Text="Currencies: "
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               Grid.Row="5"
+                               Grid.Column="0"
+                               />
+
+                        <ListView  
+                                  HasUnevenRows="True"
+                                  Grid.Row="5"
+                                  Grid.Column="1"
+                                  HeightRequest="30"
+                                  ItemsSource="{Binding Currencies}"
+                          >
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame Margin="0,0,0,0" Padding="0,0,0,0">
+                                            <Label Text="{Binding}"/>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+
+                        <!-- ******************************************************************** -->
+                        <Label Text="Languages: "
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               Grid.Row="6"
+                               Grid.Column="0"
+                               />
+
+                        <ListView  
+                                  HasUnevenRows="True"
+                                  Grid.Row="6"
+                                  Grid.Column="1"
+                                  HeightRequest="30"
+                                  ItemsSource="{Binding Languages}"
+                          >
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame Margin="0,0,0,0" Padding="0,0,0,0">
+                                            <Label Text="{Binding}"/>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+
+                        <!-- ******************************************************************** -->
+                        <Button Text="Shared Country"
+                                Grid.Row="7"
+                                Grid.ColumnSpan="2"
+                                Command="{Binding SharedCountry}"
+                                />
+                        
+                        <!-- ******************************************************************** -->
+                        <Button Text="More"
+                                Grid.Row="8"
+                                Grid.ColumnSpan="2"
+                                Command="{Binding MoreCountry}"
+                                />
+
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+
+        </Grid>
+
+
+    </StackLayout>
+
+
 </ContentPage>

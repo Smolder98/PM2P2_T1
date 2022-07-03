@@ -1,10 +1,6 @@
-﻿using PM2P2_T1.ViewModel;
+﻿using PM2P2_T1.Model;
+using PM2P2_T1.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -23,9 +19,11 @@ namespace PM2P2_T1
             this.BindingContext = mainViewModel;
         }
 
-        private void listCountries_ItemTapped(object sender, ItemTappedEventArgs e)
+        private  async void listCountries_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            
+            var country = (Country)e.Item;
+
+           await Navigation.PushModalAsync(new View.InfoPage(country));
         }
 
         private async void pickerRegion_SelectedIndexChanged(object sender, EventArgs e)
