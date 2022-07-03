@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters = "clr-namespace:PM2P2_T1.Converters"
+             x:Class="PM2P2_T1.MainPage">
+
+    <ContentPage.Resources>
+        <converters:UrlToImageSourceConverter x:Key="ImageSrcConverter" />
+    </ContentPage.Resources>
+
+    <StackLayout Padding="20,10,20,0">
+        
+        <Picker x:Name="pickerRegion"
+                Title="Seleccione una region"
+                TitleColor="Black"
+                SelectedIndexChanged="pickerRegion_SelectedIndexChanged"
+                >
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Africa</x:String>
+                    <x:String>America</x:String>
+                    <x:String>Asia</x:String>
+                    <x:String>Europe</x:String>
+                    <x:String>Oceania</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+    
+
+        <ListView x:Name="listCountries" 
+                  ItemTapped="listCountries_ItemTapped"
+                  HasUnevenRows="True"
+                  ItemsSource="{Binding Countries}"
+                  >
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="0,0,0,5" Padding="0,5,0,0">
+
+                         
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <Image Source="{Binding flags.svg, Converter={StaticResource ImageSrcConverter}}" 
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Grid.Column="0"
+                                           />
+
+                            <Label Grid.Column="1" 
+                                       Text="{Binding NameCountry.common}"
+                                        />
+
+                            
+                        </Grid>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+    </StackLayout>
+
+</ContentPage>
