@@ -130,6 +130,24 @@ namespace PM2P2_T1.Services
 
                             temp.startOfWeek = item["startOfWeek"].ToString();
 
+                            try
+                            {
+                                temp.idd = new Country.Idd()
+                                {
+                                    root = item["idd"]["root"].ToString(),
+                                    suffixes = item["idd"]["suffixes"][0].ToString()
+                                };
+                            }
+                            catch 
+                            {
+                                temp.idd = new Country.Idd()
+                                {
+                                    root = "-",
+                                    suffixes = "---"
+                                };
+
+                            }
+
                             //temp.capitalInfo = new List<double>() { (double)item["capitalInfo"]["latlng"][0], (double)item["capitalInfo"]["latlng"][1] };
 
                             

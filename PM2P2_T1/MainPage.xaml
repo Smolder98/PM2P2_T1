@@ -57,6 +57,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="40" />
                             </Grid.ColumnDefinitions>
 
 
@@ -70,7 +71,12 @@
                                        Text="{Binding NameCountry.common}"
                                         />
 
-                            
+                            <Label Grid.Column="2" 
+                                   HorizontalTextAlignment="End"
+                                       Text="{Binding CodeCountry}"
+                                        />
+
+
                         </Grid>
 
                     </ViewCell>

@@ -75,7 +75,7 @@ namespace PM2P2_T1.ViewModel
 
         private void SetData()
         {
-            Name = country.NameCountry.common;
+            Name = country.NameCodeCountry;
             Capital = country.capital.Trim();
             Population = $"{country.population:N0}";
             Flag = country.flags.svg;

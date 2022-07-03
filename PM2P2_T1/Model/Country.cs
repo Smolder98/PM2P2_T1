@@ -18,12 +18,28 @@ namespace PM2P2_T1.Model
         public IList<double> latlng { get; set; }
         public string flag { get; set; }
         public Maps maps { get; set; }
+        public Idd idd { get; set; }
         public int population { get; set; }
         public IList<string> timezones { get; set; }
         public IList<string> continents { get; set; }
         public Flags flags { get; set; }
         public string startOfWeek { get; set; }
         public IList<double> capitalInfo { get; set; }
+
+
+
+
+        public string CodeCountry
+        {
+            get { return this.idd.root + this.idd.suffixes; }
+        }
+
+
+        public string NameCodeCountry
+        {
+            get { return this.NameCountry.official + " (" + this.idd.root + this.idd.suffixes +")" ; }
+        }
+
 
 
         /***********************************************************/
@@ -45,12 +61,18 @@ namespace PM2P2_T1.Model
             public string googleMaps { get; set; }
             public string openStreetMaps { get; set; }
         }
-
         public class Flags
         {
             public string png { get; set; }
             public string svg { get; set; }
         }
+        
+        public class Idd
+        {
+            public string root { get; set; }
+            public string suffixes { get; set; }
+        }
+
 
     }
 }
